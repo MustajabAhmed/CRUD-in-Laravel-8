@@ -18,9 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('add', 'index');
-Route::post('add/store', [StudentController::class, 'store']);
-Route::get('add/store', [StudentController::class, 'store']);
+Route::group(['prefix' => 'add'], function () {
+
+    Route::view('/', 'index');
+    Route::post('/store', [StudentController::class, 'store']);
+    Route::get('/store', [StudentController::class, 'store']);
+});
+
 
 // Route::view('show', 'show');
 Route::get('/show', [StudentController::class, 'show']);
